@@ -1,16 +1,17 @@
 import pytest
 from jose import jwt
 from app import schemas
-
 from app.config import settings
 
 
-# def test_root(client):
 
+
+# def test_root(client):
 #     res = client.get("/")
 #     print(res.json().get('message'))
-#     assert res.json().get('message') == 'Hello World'
+#     assert res.json().get('message') == 'Hiya Worldie World!!!'
 #     assert res.status_code == 200
+
 
 
 def test_create_user(client):
@@ -20,6 +21,7 @@ def test_create_user(client):
     new_user = schemas.UserOut(**res.json())
     assert new_user.email == "hello123@gmail.com"
     assert res.status_code == 201
+
 
 
 def test_login_user(test_user, client):
@@ -34,6 +36,7 @@ def test_login_user(test_user, client):
     assert res.status_code == 200
 
 
+
 @pytest.mark.parametrize("email, password, status_code", [
     ('wrongemail@gmail.com', 'password123', 403),
     ('sanjeev@gmail.com', 'wrongpassword', 403),
@@ -41,6 +44,7 @@ def test_login_user(test_user, client):
     (None, 'password123', 422),
     ('sanjeev@gmail.com', None, 422)
 ])
+
 def test_incorrect_login(test_user, client, email, password, status_code):
     res = client.post(
         "/login", data={"username": email, "password": password})
