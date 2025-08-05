@@ -9,7 +9,7 @@ jobs:
         - name: pulling git repo 
           uses: actions/checkout@v2
         - name: say hi to david
-        - run: echo "hello david"
+          run: echo "hello david"
       
 
 #   build:
