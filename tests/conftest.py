@@ -33,7 +33,7 @@ def session():
         yield db
     finally:
         db.close()
-
+#
 
 @pytest.fixture()
 def client(session):
